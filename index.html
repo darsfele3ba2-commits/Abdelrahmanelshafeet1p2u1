@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -479,7 +479,7 @@
                 <div class="unit-badge">Second Prep - First Term</div>
                 <h1>ELMISTER IN ENGLISH</h1>
                 <h2>Mr. Abdelrahman Elshafie</h2>
-                <h3>Unit 1: Gen Alpha - Grammar: Present Continuous Tense</h3>
+                <h3>Unit 1: Gen Alpha - Grammar: Present Continuous</h3>
             </div>
         </div>
         <div class="social-links">
@@ -491,7 +491,7 @@
         <!-- Main Menu -->
         <div id="main-menu" class="screen active">
             <h2>Welcome! Choose a game to start:</h2>
-            <p>Test your knowledge on the Present Continuous Tense!</p>
+            <p>Test your knowledge on the Present Continuous Tense (now, temporary actions & future arrangements)!</p>
             <div class="menu-grid">
                 <div class="game-card" onclick="startGame(1)">
                     <i class="fas fa-list-ul"></i>
@@ -511,7 +511,7 @@
                 </div>
                 <div class="game-card" onclick="startGame(5)">
                     <i class="fas fa-keyboard"></i>
-                    <h3>Rewrite Sentences</h3>
+                    <h3>Correct Sentences</h3>
                 </div>
             </div>
         </div>
@@ -537,7 +537,7 @@
 
             <!-- Game 5 Area (Rewrite) -->
             <div id="rewrite-area" style="display: none; text-align: center;">
-                <p class="rewrite-instruction">Rewrite the sentence using the word in brackets:</p>
+                <p class="rewrite-instruction">Rewrite the sentence correcting the word(s) in brackets:</p>
                 <div id="rewrite-bracket" style="font-size: 1.5rem; color: var(--primary); font-weight: bold; margin-bottom: 30px;"></div>
                 <input type="text" id="rewrite-input" placeholder="Type your answer here..." autocomplete="off">
                 <button id="btn-submit-rewrite" class="btn-back" style="background: var(--primary); box-shadow: 0 4px 0 #064e3b; margin: 20px auto; font-size: 1.3rem; padding: 15px 40px;" onclick="submitRewrite()">Submit</button>
@@ -599,18 +599,18 @@
             }
         }
 
-        // Language questions for Second Prep - First Term, Unit 1: Present Continuous Tense
+        // Language questions for Second Prep - First Term, Unit 1: Present Continuous
         const rewriteTemplates = [
-            { q: "I didn't watch TV yesterday.", bracket: "at the moment", ans: ["I am not watching TV at the moment", "I'm not watching TV at the moment.", "I am not watching TV at the moment."] },
-            { q: "The student studied yesterday.", bracket: "now", ans: ["The student is studying now", "The student is studying now."] },
-            { q: "He played football yesterday.", bracket: "now", ans: ["He is playing football now", "He is playing football now."] },
-            { q: "We studied English last week.", bracket: "this week", ans: ["We are studying English this week", "We are studying English this week."] },
-            { q: "Did you eat breakfast yesterday?", bracket: "now", ans: ["Are you eating breakfast now?", "Are you eating breakfast now"] },
-            { q: "I helped my mother last night.", bracket: "am helping", ans: ["I am helping my mother now", "I am helping my mother.", "I'm helping my mother now.", "I am helping my mother now."] },
-            { q: "They washed the dishes yesterday.", bracket: "are washing", ans: ["They are washing the dishes now", "They are washing the dishes.", "They are washing the dishes now."] },
-            { q: "He cleaned the room yesterday.", bracket: "at the moment", ans: ["He is cleaning the room at the moment", "He's cleaning the room at the moment.", "He is cleaning the room at the moment."] },
-            { q: "The birds flew in the sky.", bracket: "are flying", ans: ["Look! The birds are flying in the sky", "The birds are flying in the sky.", "The birds are flying in the sky"] },
-            { q: "Rahma eats apples.", bracket: "at the moment", ans: ["Rahma is eating apples at the moment", "Rahma is eating apples at the moment."] }
+            { q: "Look! The dog (run) after the cat now.", bracket: "Correct the mistake", ans: ["Look! The dog is running after the cat now", "Look! The dog is running after the cat now."] },
+            { q: "Listen! The baby (cry) upstairs.", bracket: "Correct the mistake", ans: ["Listen! The baby is crying upstairs", "Listen! The baby is crying upstairs."] },
+            { q: "I (write) an email at the moment.", bracket: "Correct the mistake", ans: ["I am writing an email at the moment", "I am writing an email at the moment."] },
+            { q: "She (wear) her new dress today.", bracket: "Correct the mistake", ans: ["She is wearing her new dress today", "She is wearing her new dress today."] },
+            { q: "We (travel) to Luxor next week.", bracket: "Correct the mistake", ans: ["We are travelling to Luxor next week", "We are travelling to Luxor next week."] },
+            { q: "He (repair) his bike right now.", bracket: "Correct the mistake", ans: ["He is repairing his bike right now", "He is repairing his bike right now."] },
+            { q: "They (build) a new house this year.", bracket: "Correct the mistake", ans: ["They are building a new house this year", "They are building a new house this year."] },
+            { q: "At the moment, Sara (read) a magazine.", bracket: "Correct the mistake", ans: ["At the moment, Sara is reading a magazine", "At the moment, Sara is reading a magazine."] },
+            { q: "This week, I (help) my mother a lot.", bracket: "Correct the mistake", ans: ["This week, I am helping my mother a lot", "This week, I am helping my mother a lot."] },
+            { q: "Look! They (wave) at us.", bracket: "Correct the mistake", ans: ["Look! They are waving at us", "Look! They are waving at us."] }
         ];
 
         const generateQuestions = (count, type) => {
@@ -618,33 +618,38 @@
                 return [...rewriteTemplates].sort(() => Math.random() - 0.5).slice(0, 10);
             }
             
-            // Multiple Choice / TF questions based on Unit 1 Language (Present Continuous Tense)
+            // Multiple Choice / TF questions based on Unit 1 Grammar (Present Simple)
             const templates = [
-                { text: "We _____ the Eiffel Tower next Wednesday. We booked the tickets.", ans: "are visiting", wrong: ["do you do", "are going to visit", "visit"] },
-                { text: "What _____ at the moment?", ans: "are you doing", wrong: ["do you do", "are going to do", "doing"] },
-                { text: "They arranged everything. They _____ football tonight.", ans: "are playing", wrong: ["play", "played", "plays"] },
-                { text: "Look! A big bird _____ in the sky.", ans: "is flying", wrong: ["flies", "flew", "fly"] },
-                { text: "Everything is arranged. I _____ for the airport tomorrow.", ans: "am leaving", wrong: ["leave", "leaves", "left"] },
-                { text: "I _____ an interesting story at the moment.", ans: "am reading", wrong: ["read", "reads", "reading"] },
-                { text: "I made all the arrangements. We _____ early tomorrow.", ans: "are travelling", wrong: ["travel", "travels", "travelled"] },
-                { text: "I _____ my cousins tomorrow. We have arranged everything.", ans: "am meeting", wrong: ["meet", "met", "meets"] },
-                { text: "What is she _____ now?", ans: "doing", wrong: ["do", "does", "did"] },
-                { text: "Take your umbrella because it _____ now.", ans: "is raining", wrong: ["rains", "rained", "rain"] },
-                { text: "The Minister _____ our school next week. We made all the preparations.", ans: "is visiting", wrong: ["visits", "visited", "visit"] },
-                { text: "They _____ flying to France next week.", ans: "are", wrong: ["have", "does", "is"] },
-                { text: "Ali _____ a new mobile tomorrow. It's arranged.", ans: "is buying", wrong: ["buys", "bought", "buying"] },
-                { text: "Mona _____ tea now.", ans: "is drinking", wrong: ["drink", "drank", "are drinking"] },
-                { text: "Look! The boy _____ fast.", ans: "is running", wrong: ["run", "runs", "running"] },
-                { text: "Listen! Sara _____ the piano.", ans: "is playing", wrong: ["play", "played", "plays"] },
-                { text: "Mazen _____ his homework at the moment.", ans: "is doing", wrong: ["does", "did", "doing"] },
-                { text: "Ahmed _____ his computer at the moment.", ans: "is repairing", wrong: ["repair", "repaired", "repairs"] },
-                { text: "Hany is _____ the car now.", ans: "washing", wrong: ["wash", "washed", "washes"] },
-                { text: "The police officer _____ a school today.", ans: "is visiting", wrong: ["visit", "visited", "visits"] },
-                { text: "They _____ chess at the moment.", ans: "are playing", wrong: ["play", "played", "plays"] },
-                { text: "What _____ doing at the moment?", ans: "are they", wrong: ["they are", "they were", "were they"] },
-                { text: "He _____ now.", ans: "isn't reading", wrong: ["aren't reading", "doesn't read", "didn't read"] },
-                { text: "_____ he playing football now?", ans: "Is", wrong: ["Are", "Do", "Does"] },
-                { text: "We _____ at the moment.", ans: "aren't studying", wrong: ["isn't studying", "don't study", "didn't study"] }
+                { text: "Look! The children _____ football in the yard.", ans: "are playing", wrong: ["play", "played", "plays"] },
+                { text: "Listen! Someone _____ at the door.", ans: "is knocking", wrong: ["knock", "knocks", "knocked"] },
+                { text: "I _____ my homework right now.", ans: "am doing", wrong: ["do", "did", "does"] },
+                { text: "She _____ a shower at the moment.", ans: "is taking", wrong: ["takes", "took", "take"] },
+                { text: "We _____ dinner tonight, so don't wait for us.", ans: "are having", wrong: ["have", "had", "has"] },
+                { text: "This week, Ali _____ extra classes for his exam.", ans: "is attending", wrong: ["attends", "attended", "attend"] },
+                { text: "They _____ to Alexandria next Friday because the tickets are booked.", ans: "are travelling", wrong: ["travel", "travelled", "travels"] },
+                { text: "My brother _____ a new bike these days.", ans: "is riding", wrong: ["rides", "rode", "ride"] },
+                { text: "Right now, the teacher _____ the lesson.", ans: "is explaining", wrong: ["explains", "explained", "explain"] },
+                { text: "Careful! You _____ too fast.", ans: "are driving", wrong: ["drive", "drove", "drives"] },
+                { text: "At the moment, I _____ a text message.", ans: "am writing", wrong: ["write", "wrote", "writes"] },
+                { text: "We _____ the party arrangements for tomorrow.", ans: "are making", wrong: ["make", "made", "makes"] },
+                { text: "He _____ his room this morning, so it's a mess right now.", ans: "is cleaning", wrong: ["cleans", "cleaned", "clean"] },
+                { text: "Look out! The car _____ towards us!", ans: "is coming", wrong: ["comes", "came", "come"] },
+                { text: "This term, I _____ harder than usual.", ans: "am studying", wrong: ["study", "studied", "studies"] },
+                { text: "She can't talk now because she _____ lunch.", ans: "is having", wrong: ["has", "had", "have"] },
+                { text: "The kids _____ in the pool at the moment.", ans: "are swimming", wrong: ["swim", "swam", "swims"] },
+                { text: "I _____ my sister to the airport tomorrow; it's already arranged.", ans: "am taking", wrong: ["take", "took", "takes"] },
+                { text: "Right now, the boys _____ video games.", ans: "are playing", wrong: ["play", "played", "plays"] },
+                { text: "Listen! The birds _____ beautifully.", ans: "are singing", wrong: ["sing", "sang", "sings"] },
+                { text: "We _____ our grandparents next weekend as it's all arranged.", ans: "are visiting", wrong: ["visit", "visited", "visits"] },
+                { text: "He _____ for his exam this week, so he's busy.", ans: "is preparing", wrong: ["prepares", "prepared", "prepare"] },
+                { text: "At this moment, she _____ the piano.", ans: "is playing", wrong: ["plays", "played", "play"] },
+                { text: "I _____ a new hobby these days.", ans: "am trying", wrong: ["try", "tried", "tries"] },
+                { text: "Look! The sun _____ down.", ans: "is going", wrong: ["goes", "went", "go"] },
+                { text: "They _____ a meeting now, so please wait outside.", ans: "are having", wrong: ["have", "had", "has"] },
+                { text: "This month, our class _____ a science project.", ans: "is doing", wrong: ["does", "did", "do"] },
+                { text: "Wait, I _____ my shoes.", ans: "am tying", wrong: ["tie", "tied", "ties"] },
+                { text: "The workers _____ the new bridge these days.", ans: "are building", wrong: ["build", "built", "builds"] },
+                { text: "Next Monday, we _____ our new project because everything is ready.", ans: "are starting", wrong: ["start", "started", "starts"] }
             ];
 
             const shuffled = [...templates].sort(() => Math.random() - 0.5);
@@ -789,7 +794,8 @@
                 startTargetsGame(qData);
             } else if (currentGameId === 5) {
                 rewriteArea.style.display = 'block';
-                rewriteBracket.innerText = `(${qData.bracket})`;
+                rewriteBracket.innerText = `${qData.q}`;
+                qContainer.style.display = 'none'; // Hide main question text for rewrite
                 rewriteInput.value = '';
                 rewriteInput.disabled = false;
                 rewriteInput.style.borderColor = "#cbd5e1";
@@ -843,7 +849,7 @@
                 playSound('wrong');
                 showFeedbackIcon(false);
                 mistakes.push({
-                    q: qData.q + ` (${qData.bracket})`,
+                    q: qData.q,
                     correct: correctAnsStr
                 });
                 feedbackDiv.innerHTML = `<span style="color: var(--danger);"><i class="fas fa-times"></i> Answer: ${correctAnsStr}</span>`;

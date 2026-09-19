@@ -513,6 +513,10 @@
                     <i class="fas fa-keyboard"></i>
                     <h3>Correct Sentences</h3>
                 </div>
+                <div class="game-card" onclick="startGame(6)">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Rewrite Sentences</h3>
+                </div>
             </div>
         </div>
 
@@ -537,7 +541,7 @@
 
             <!-- Game 5 Area (Rewrite) -->
             <div id="rewrite-area" style="display: none; text-align: center;">
-                <p class="rewrite-instruction">Rewrite the sentence correcting the word(s) in brackets:</p>
+                <p class="rewrite-instruction" id="rewrite-instruction-text">Rewrite the sentence correcting the word(s) in brackets:</p>
                 <div id="rewrite-bracket" style="font-size: 1.5rem; color: var(--primary); font-weight: bold; margin-bottom: 30px;"></div>
                 <input type="text" id="rewrite-input" placeholder="Type your answer here..." autocomplete="off">
                 <button id="btn-submit-rewrite" class="btn-back" style="background: var(--primary); box-shadow: 0 4px 0 #064e3b; margin: 20px auto; font-size: 1.3rem; padding: 15px 40px;" onclick="submitRewrite()">Submit</button>
@@ -613,9 +617,26 @@
             { q: "Look! They (wave) at us.", bracket: "Correct the mistake", ans: ["Look! They are waving at us", "Look! They are waving at us."] }
         ];
 
+        // "Rewrite Sentences" game - rewrite using the word/hint in brackets
+        const rewriteSentencesTemplates = [
+            { q: "The children play in the garden.", bracket: "now", ans: ["The children are playing in the garden now", "The children are playing in the garden now."] },
+            { q: "She studies for her exam.", bracket: "these days", ans: ["She is studying for her exam these days", "She is studying for her exam these days."] },
+            { q: "I write an email.", bracket: "at the moment", ans: ["I am writing an email at the moment", "I am writing an email at the moment."] },
+            { q: "We travel to Aswan.", bracket: "next Friday", ans: ["We are travelling to Aswan next Friday", "We are travelling to Aswan next Friday."] },
+            { q: "He fixes his bike.", bracket: "right now", ans: ["He is fixing his bike right now", "He is fixing his bike right now."] },
+            { q: "They have a meeting.", bracket: "this afternoon", ans: ["They are having a meeting this afternoon", "They are having a meeting this afternoon."] },
+            { q: "The baby cries.", bracket: "listen", ans: ["Listen! The baby is crying", "Listen! The baby is crying."] },
+            { q: "I wear my new watch.", bracket: "today", ans: ["I am wearing my new watch today", "I am wearing my new watch today."] },
+            { q: "She visits her grandmother.", bracket: "this week", ans: ["She is visiting her grandmother this week", "She is visiting her grandmother this week."] },
+            { q: "The teacher explains the lesson.", bracket: "look", ans: ["Look! The teacher is explaining the lesson", "Look! The teacher is explaining the lesson."] },
+        ];
+
         const generateQuestions = (count, type) => {
             if (type === 'REWRITE') {
                 return [...rewriteTemplates].sort(() => Math.random() - 0.5).slice(0, 10);
+            }
+            if (type === 'REWRITE2') {
+                return [...rewriteSentencesTemplates].sort(() => Math.random() - 0.5).slice(0, 10);
             }
             
             // Multiple Choice / TF questions based on Unit 1 Grammar (Present Simple)
@@ -696,6 +717,7 @@
         const rewriteArea = document.getElementById('rewrite-area');
         const rewriteBracket = document.getElementById('rewrite-bracket');
         const rewriteInput = document.getElementById('rewrite-input');
+        const rewriteInstructionText = document.getElementById('rewrite-instruction-text');
 
         rewriteInput.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
@@ -746,9 +768,10 @@
             let type = 'MCQ';
             if (gameId === 4) type = 'TF';
             if (gameId === 5) type = 'REWRITE';
+            if (gameId === 6) type = 'REWRITE2';
             
-            // Generate 25 questions for MCQ/TF/Games, 10 for Rewrite
-            let qCount = (gameId === 5) ? 10 : 25;
+            // Generate 25 questions for MCQ/TF/Games, 10 for Rewrite games
+            let qCount = (gameId === 5 || gameId === 6) ? 10 : 25;
             currentQuestionsList = generateQuestions(qCount, type);
             totalQuestions = currentQuestionsList.length;
             totalQSpan.innerText = totalQuestions;
@@ -794,8 +817,25 @@
                 startTargetsGame(qData);
             } else if (currentGameId === 5) {
                 rewriteArea.style.display = 'block';
+                rewriteInstructionText.innerText = 'Rewrite the sentence correcting the word(s) in brackets:';
                 rewriteBracket.innerText = `${qData.q}`;
                 qContainer.style.display = 'none'; // Hide main question text for rewrite
+                rewriteInput.value = '';
+                rewriteInput.disabled = false;
+                rewriteInput.style.borderColor = "#cbd5e1";
+                
+                const submitBtn = document.getElementById('btn-submit-rewrite');
+                submitBtn.disabled = false;
+                submitBtn.style.display = 'inline-block';
+                
+                document.getElementById('btn-next-rewrite').style.display = 'none';
+                document.getElementById('rewrite-feedback').innerHTML = '';
+                setTimeout(() => rewriteInput.focus(), 100);
+            } else if (currentGameId === 6) {
+                rewriteArea.style.display = 'block';
+                rewriteInstructionText.innerText = 'Rewrite the sentence using the word in brackets:';
+                qContainer.style.display = 'block'; // Show the original sentence
+                rewriteBracket.innerText = `(${qData.bracket})`;
                 rewriteInput.value = '';
                 rewriteInput.disabled = false;
                 rewriteInput.style.borderColor = "#cbd5e1";
